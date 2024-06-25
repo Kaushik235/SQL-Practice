@@ -1,0 +1,11 @@
+Question-https://leetcode.com/problems/monthly-transactions-i/?envType=study-plan-v2&envId=top-sql-50
+SELECT  SUBSTR(trans_date,1,7) as month, country, count(id) as trans_count, SUM(CASE WHEN state = 'approved' then 1 else 0 END) as approved_count, SUM(amount) as trans_total_amount, SUM(CASE WHEN state = 'approved' then amount else 0 END) as approved_total_amount
+FROM Transactions
+GROUP BY month, country
+
+Solution Explanation
+Here the question asks us to print total transactions,approved transactions,amount and approved transaction amount for each month
+1)We select Substring of trans_date that contains Year and month ('YYYY-MM') because thats what we need.
+2)Then we select the country,and since we need total transaction count we take the id count.
+3)Now for approved count we take the case when state='approved' and sum those transaction count,same for transaction amount
+4)We finally group it by Month and Country
